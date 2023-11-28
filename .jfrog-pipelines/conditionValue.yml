@@ -65,6 +65,16 @@ pipelines:
         execution:
           onExecute:
             - echo "executing step..."
+
+      - name: WithStatusCancelled
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: WithStatusSuccess
+        execution:
+          onExecute:
+            - echo "executing step..."
+            
             
       - name: WithStatusTimeout
         type: Bash
@@ -95,7 +105,10 @@ pipelines:
             - name: WithStatusSkipped
               status: 
                 - skipped
-            #not testing for unstable and cancelled
+            - name: WithStatusCancelled
+              status:
+                - cancelled
+            #not testing for unstable
         execution:
           onExecute:
             - echo "allow all status "
