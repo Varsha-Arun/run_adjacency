@@ -7,7 +7,7 @@ resources:
       branches:
         include: main
 
-- name: mysanityBBSGitRepo
+  - name: mysanityBBSGitRepo
     type: GitRepo
     configuration:
       gitProvider: varshaautoBBS
