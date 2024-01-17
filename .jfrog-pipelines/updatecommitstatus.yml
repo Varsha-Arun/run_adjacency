@@ -17,6 +17,6 @@ pipelines:
             - name: myupdatecommitstatusGitRepo
         execution:
           onStart:
-            - update_commit_status myupdatecommitstatusGitRepo --status processing --message "marked as processing" --context $step_name
+            - update_commit_status myupdatecommitstatusGitRepo --status processing --message "marked as processing" 
           onExecute:
-            - update_commit_status myupdatecommitstatusGitRepo --status success --message "marked as success" --context $step_name
+            - update_commit_status myupdatecommitstatusGitRepo --status success --message "marked as success" 
