@@ -10,7 +10,7 @@ resources:
   - name: mysanityBBSGitRepo
     type: GitRepo
     configuration:
-      gitProvider: varshaautoBBS
+      gitProvider: varshabitbucketapsnew
       path: ~varshaa/sanity_pipeline
       branches:
         include: master
