@@ -6,6 +6,15 @@ resources:
       path: Varsha-Arun/sample_python
       branches:
         include: main
+
+- name: mysanityBBSGitRepo
+    type: GitRepo
+    configuration:
+      gitProvider: varshaautoBBS
+      path: ~varshaa/sanity_pipeline
+      branches:
+        include: master
+
   
 pipelines:
   - name: updatecommitstatusPipe
@@ -15,8 +24,11 @@ pipelines:
         configuration:
           inputResources:
             - name: myupdatecommitstatusGitRepo
+            - name: mysanityBBSGitRepo
         execution:
           onStart:
             - update_commit_status myupdatecommitstatusGitRepo --status processing --message "marked as processing" 
+            - update_commit_status mysanityBBSGitRepo --status processing --message "marked as processing" 
           onExecute:
             - update_commit_status myupdatecommitstatusGitRepo --status success --message "marked as success" 
+            - update_commit_status mysanityBBSGitRepo --status processing --message "marked as success" 
