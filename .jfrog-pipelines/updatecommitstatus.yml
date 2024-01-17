@@ -1,0 +1,22 @@
+resources:
+  - name: myGitRepo
+    type: GitRepo
+    configuration:
+      gitProvider: varsha_github
+      path: Varsha-Arun/sample_python
+      branches:
+        include: main
+  
+pipelines:
+  - name: updatecommitstatusPipe
+    steps:
+      - name: updatecommitstatusStep
+        type: Bash
+        configuration:
+          inputResources:
+            - name: myGitRepo
+        execution:
+          onStart:
+            - update_commit_status myGitRepo --status processing --message "marked as processing" --context $step_name
+          onExecute:
+            - update_commit_status myGitRepo --status success --message "marked as success" --context $step_name
