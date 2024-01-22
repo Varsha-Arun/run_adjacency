@@ -27,16 +27,25 @@ pipelines:
             - mkdir -p preState
             - echo "working" >> preState/working.txt
             - add_run_files preState/working.txt myfilesOnstart
+            - wget https://norvig.com/big.txt
+            - cat big.txt  >> bigger_file1.txt
+            - add_run_files bigger_file1.txt biggerFileOnstart
           onExecute:
             - echo "Step 2 is running"
             - add_run_variables step_2_varOnExecute="onExecute"
             - mkdir -p preState
             - echo "working" >> preState/working1.txt
             - add_run_files preState/working1.txt myfilesOnExecute
+            - wget https://norvig.com/big.txt
+            - cat big.txt  >> bigger_file2.txt
+            - add_run_files bigger_file2.txt biggerFileOnExecute
           onComplete:
             - add_run_variables step_2_varOnComplete="onComplete"
             - echo "working" >> preState/working2.txt
             - add_run_files preState/working2.txt myfilesOnComplete
+            - wget https://norvig.com/big.txt
+            - cat big.txt  >> bigger_file3.txt
+            - add_run_files bigger_file3.txt biggerFileOnComplete
 
       - name: S_WF_033_002matrix
         type: Matrix
